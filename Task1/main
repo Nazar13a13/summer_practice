@@ -1,0 +1,29 @@
+require 'date'
+puts "\tPractice Task 1\nVlada Fal\n\n"
+
+module Validation
+    def self.valid_name?(str)
+	return false if str.nil? || str.empty? || str.length > 40
+        /^[a-zA-Z\s\-]+$/.match?(str)
+	end
+
+    def self.valid_inn?(str)
+    	return false if str.nil? || str.empty?
+    	/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.match?(str)
+	end
+
+    def self.after_date?(date)
+    	return false if date.nil? || !date.is_a?(Date)
+    	date <= Date.today
+    end
+end 	
+
+puts ("Input your name:")
+login = gets 
+puts ("Input your password:")
+password = gets  
+puts ("\n\nisName: " + (Validation.valid_name?(login)).to_s)
+puts ("isPassword: " + (Validation.valid_inn?(password)).to_s)
+puts ("isBirthDate: " + (Validation.after_date?(DateTime.new(2000, 1, 1))).to_s)
+
+sleep(1000)
